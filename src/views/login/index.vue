@@ -1,5 +1,8 @@
 <template>
   <div class="login-container">
+    <div class="login-header">
+      <span class="header-icon">传</span>DPOE商家管理后台
+    </div>
     <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"
       class="card-box login-form">
       <h3 class="title">系统登录</h3>
@@ -88,7 +91,7 @@
     @import "src/styles/mixin.scss";
     .tips {
       font-size: 14px;
-      color: #fff;
+      color: #e4e4e4;
       margin-bottom: 5px;
     }
 
@@ -96,6 +99,10 @@
       @include relative;
       height: 100vh;
       background-color: #2d3a4b;
+      background-image: url('../../assets/login_images/login_bg.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
       input:-webkit-autofill {
         -webkit-box-shadow: 0 0 0px 1000px #293444 inset !important;
         -webkit-text-fill-color: #fff !important;
@@ -106,7 +113,8 @@
         -webkit-appearance: none;
         border-radius: 0px;
         padding: 12px 5px 12px 15px;
-        color: #eeeeee;
+        color: #e4e4e4;
+        font-size: 16px;
         height: 47px;
       }
       .el-input {
@@ -119,29 +127,60 @@
         color: #889aa4;
       }
       .title {
-        font-size: 26px;
+        font-size: 24px;
         font-weight: 400;
-        color: #eeeeee;
+        color: #333;
         margin: 0px auto 40px auto;
-        text-align: center;
+        text-align: left;
         font-weight: bold;
+      }
+      .login-header {
+        position: absolute;
+        width: 100%;
+        height: 80px;
+        line-height: 80px;
+        font-size: 26px;
+        padding-left: 20%;
+        background: #fff;
+        color: #000;
+
+        .header-icon {
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          border-radius: 10px;
+          background: #000;
+          font-size: 20px;
+          font-weight: bold;
+          color: #fff;
+          vertical-align: 2px;
+          margin-right: 5px;
+        }
       }
       .login-form {
         position: absolute;
-        left: 0;
-        right: 0;
+        /* left: 0; */
+        right: 18%;
+        top: 20%;
         width: 400px;
         padding: 35px 35px 15px 35px;
-        margin: 120px auto;
+        background: #fff;
+        /* margin: 120px auto; */
       }
       .el-form-item {
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(0, 0, 0, 0.1);
+        border: 1px solid rgb(228, 228, 228);
+        /* background: rgba(0, 0, 0, 0.1); */
         border-radius: 5px;
-        color: #454545;
+        color: #e4e4e4;
       }
       .forget-pwd {
         color: #fff;
+      }
+      .el-button--primary {
+        background: #000;
+        border-color: #000;
       }
     }
 </style>
