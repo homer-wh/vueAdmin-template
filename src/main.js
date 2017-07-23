@@ -11,13 +11,30 @@ import 'nprogress/nprogress.css'
 import 'normalize.css/normalize.css'
 import '@/assets/iconfont/iconfont'
 import IconSvg from '@/components/Icon-svg/index.vue'
+import * as filters from './filters'; // 全局vue filter
+import './mock/index.js';  // 该项目所有请求使用mockjs模拟
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
 Vue.component('icon-svg', IconSvg)
 
+// register global utility filters.
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+});
+
+// permissiom judge
+function hasPermission(roles, permissionRoles) {
+  if (roles.indexOf('admin') >= 0) return true; // admin权限 直接通过
+  if (!permissionRoles) return true;
+  return roles.some(role => permissionRoles.indexOf(role) >= 0)
+}
+
+
 const whiteList = ['/login'];
+
+
 router.beforeEach((to, from, next) => {
   NProgress.start();
   if (store.getters.token) {

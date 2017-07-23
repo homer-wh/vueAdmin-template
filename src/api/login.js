@@ -1,5 +1,17 @@
 import fetch from '@/utils/fetch';
 
+export function loginByPhone(tel, password) {
+  const data = {
+    tel,
+    password
+  };
+  return fetch({
+    url: '/login/loginbyphone',
+    method: 'post',
+    data
+  });
+}
+
 export function login(email, password) {
   return fetch({
     url: '/user/login',

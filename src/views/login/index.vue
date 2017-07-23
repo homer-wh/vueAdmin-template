@@ -6,11 +6,11 @@
     <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"
       class="card-box login-form">
       <h3 class="title">系统登录</h3>
-      <el-form-item prop="email">
+      <el-form-item prop="phone">
         <span class="svg-container">
                   <icon-svg icon-class="jiedianyoujian"></icon-svg>
                 </span>
-        <el-input name="email" type="text" v-model="loginForm.email" autoComplete="on" placeholder="邮箱"></el-input>
+        <el-input name="phone" type="text" v-model="loginForm.phone" autoComplete="on" placeholder="手机号码"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
@@ -24,18 +24,24 @@
           登录
         </el-button>
       </el-form-item>
-      <div class='tips'>admin账号为:admin@wallstreetcn.com 密码随便填</div>
-      <div class='tips'>editor账号:editor@wallstreetcn.com 密码随便填</div>
+      <div class='tips'>13120520590 密码随便填</div>
     </el-form>
   </div>
 </template>
 
 <script>
-    import { isWscnEmail } from '@/utils/validate';
+    import { isPhoneNum } from '@/utils/validate';
 
     export default {
       name: 'login',
       data() {
+        const validatePhone = (rule, value, callback) => {
+          if (!isPhoneNum(value)) {
+            callback(new Error('请输入正确的手机号码'));
+          } else {
+            callback();
+          }
+        };
         const validateEmail = (rule, value, callback) => {
           if (!isWscnEmail(value)) {
             callback(new Error('请输入正确的合法邮箱'));
@@ -52,12 +58,12 @@
         };
         return {
           loginForm: {
-            email: 'admin@wallstreetcn.com',
+            phone: '13120520590',
             password: '111111'
           },
           loginRules: {
-            email: [
-                { required: true, trigger: 'blur', validator: validateEmail }
+            phone: [
+                { required: true, trigger: 'blur', validator: validatePhone }
             ],
             password: [
                 { required: true, trigger: 'blur', validator: validatePass }
